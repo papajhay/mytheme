@@ -36,7 +36,7 @@ class AgenceMenuPage {
        // ça affiche la date d'ouverture
       add_settings_field("agence_options_date", "Date d'ouverture", function() {
         ?>
-        <input type="text" name="agence_date" value="<?= esc_attr(get_option('agence_date')) ?>" class=".montheme_datepicker" >
+        <input type="text" name="agence_date" value="<?= esc_attr(get_option('agence_date')) ?>" class="montheme_datepicker" >
         <?php
 },self:: GROUP, 'agence_options_section');
        

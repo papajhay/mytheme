@@ -7,6 +7,8 @@ $count = absint(get_comments_number());
 ?>
 
 <?php if ($count >0): ?>
+<!--_n:traduction-->
+<!--h2><//?= sprintf (_n('%s Commentaire', '%s Commentaires', $count, 'montheme'), $count); ?></h2-->
 <!--affichage nbs de commentaire si le nb de coms > 1 il prend un 's' -->
   <h2> <?= $count ?> Commentaire<?= $count > 1 ? 's' : '' ?></h2>
 <?php else: ?> 
