@@ -9,7 +9,7 @@ function montheme_supports(){
       add_theme_support( 'post-thumbnails' );//afficher une image
       add_theme_support('menus');//afficher le fichier menu dans l'apparence de tableau de bord
       add_theme_support('html5');
-      register_nav_menu('header', 'En tête du menu');//pour enregistrer le menu
+      register_nav_menu('header', 'En tête du menu');//pour enregistrer le menu la partie gestion(tableau de bord)
       register_nav_menu('footer', 'Pied de page');
       add_image_size('post_thumbnail', 1920, 1080, true);
      
@@ -193,7 +193,7 @@ function montheme_register_widget () {
       register_widget(YoutubeWidget::class);
       register_sidebar([
              'id' => 'homepage',
-             'name' => 'Sidebar Accueil',
+             'name' => __('Sidebar Accueil', 'montheme'),
              'before_widget' => '<div class="p-4 %2$s" id="%1$s">',
              'after_widget' => '</div>',
              'before_title' => '<h4 class="font-italic">',
@@ -217,3 +217,9 @@ HTML;
 
 add_action('after_switch_theme', ' flush_rewrite_rules');
 add_action('switch_theme', ' flush_rewrite_rules');
+ 
+
+//pour la traduction pour une autre langue
+add_action('after_setup_theme', function () {
+     load_theme_textdomain('montheme', get_template_directory() . '/languages');
+});
