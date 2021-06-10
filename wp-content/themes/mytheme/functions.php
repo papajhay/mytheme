@@ -216,3 +216,14 @@ add_action('switch_theme', ' flush_rewrite_rules');
 add_action('after_setup_theme', function () {
      load_theme_textdomain('montheme', get_template_directory() . '/languages');
 });
+
+
+/** @var wpdb $wpdb  */
+//récupération des resultats particulières de requête SQL
+global $wpdb;
+$tag = "tag2";
+$query = $wpdb->prepare("SELECT name FROM {$wpdb->terms} WHERE slug= %s", [$tag]);
+$results = $wpdb->get_results($query);
+echo '<pre>';
+var_dump($results);
+echo '</pre>';
