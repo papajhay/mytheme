@@ -47,7 +47,7 @@
             ]);
             while ($query->have_posts()): $query->the_post() ; 
         ?>
-                <div class="col-sm-4">
+                <div class="col-sm-4 mb-5">
                     <!--get_template_part():permet d'inclure d'un autre élément -->
                     <?php get_template_part('parts/card', 'post'); ?>
                 </div>  

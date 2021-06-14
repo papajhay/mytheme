@@ -21,6 +21,6 @@ $count = absint(get_comments_number());
 <?php endif; ?>
 
 <!--affichage listes des commentaires-->
-<?php wp_list_comments(['style' => 'div', 'walker' => new CommentWalker()]) ?>
+<?php wp_list_comments(['style' => 'div']) ?>
 
 <?php paginate_comments_links() ?>

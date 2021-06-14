@@ -93,10 +93,11 @@ function montheme_init() {
 }
 
 add_action('init', 'montheme_init');
+//after_setup_theme : permet d'afficher le titre de site sur la barre de nvigation (ex:Mythemewp)
 add_action('after_setup_theme','montheme_supports');
 //wp_enqueue_scripts : fil d'attente de script et de styles censés apparaître sur le front-end 
 add_action('wp_enqueue_scripts', 'montheme_register_assets');
-//récupération de la séparation de la barre de navigation
+//récupération de la séparation de la barre de navigation (ex: |)
 add_filter('document_title_separator', 'montheme_title_separator');
 //add_filter('document_title_parts', 'montheme_title_document_parts');
 add_filter('nav_menu_css_class', 'montheme_menu_class');
@@ -219,11 +220,12 @@ add_action('after_setup_theme', function () {
 
 
 /** @var wpdb $wpdb  */
-//récupération des resultats particulières de requête SQL
+/*récupération des resultats particulières de requête SQL
 global $wpdb;
-$tag = "tag2";
-$query = $wpdb->prepare("SELECT name FROM {$wpdb->terms} WHERE slug= %s", [$tag]);
-$results = $wpdb->get_results($query);
+$tag = "\"tag1";
+$query = $wpdb->prepare("SELECT name FROM {$ywpdb->terms} WHERE slug= %s", [$tag]);
+var_dump($query); die();
+$results = $wpdb -> get_results($query);
 echo '<pre>';
 var_dump($results);
-echo '</pre>';
+echo '</pre>';*/
