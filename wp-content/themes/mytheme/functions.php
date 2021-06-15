@@ -214,18 +214,24 @@ add_action('switch_theme', ' flush_rewrite_rules');
  
 
 //pour la traduction pour une autre langue
+//https://developer.wordpress.org/apis/handbook/internationalization/
 add_action('after_setup_theme', function () {
      load_theme_textdomain('montheme', get_template_directory() . '/languages');
 });
 
 
-/** @var wpdb $wpdb  */
-/*récupération des resultats particulières de requête SQL
-global $wpdb;
-$tag = "\"tag1";
-$query = $wpdb->prepare("SELECT name FROM {$ywpdb->terms} WHERE slug= %s", [$tag]);
-var_dump($query); die();
-$results = $wpdb -> get_results($query);
-echo '<pre>';
-var_dump($results);
-echo '</pre>';*/
+//API: https://developer.wordpress.org/rest-api
+add_action('rest_api_init', function () {
+      //enregistrement de route
+      register_rest_route('mythemewp/v1', '/demo/(?P<id>\d+)', [
+            'methods' => 'GET',
+            'callback' => function (WP_REST_Request $Request) {
+                  $postID = (int)$Request->get_param('id');
+                  $post = get_post($postID);
+                  if ($post === null) {
+                        return new WP_error('rien', 'On a rien à dire', ['status' => '404']);
+                  } 
+                 return $post->post_title;
+            }
+      ]);
+});
