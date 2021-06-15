@@ -232,6 +232,24 @@ add_action('rest_api_init', function () {
                         return new WP_error('rien', 'On a rien à dire', ['status' => '404']);
                   } 
                  return $post->post_title;
+            },
+            'permission_callback' => function () {
+                  return current_user_can('edit_posts');
             }
       ]);
 });
+
+
+add_filter( 'rest_authentication_errors', function( $result ) {
+      if ( true === $result || is_wp_error( $result ) ) {
+            return $result;
+        }
+        
+     /** @var WP $wp */
+     global $wp;
+     //desactivation de l'authentification
+     if (strpos($wp->query_vars ['rest_route'], 'mythemewp/v1') !== false) {
+           return true;
+     }
+     return $result;
+  }, 9);
