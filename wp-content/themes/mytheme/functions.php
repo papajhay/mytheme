@@ -244,7 +244,7 @@ add_filter( 'rest_authentication_errors', function( $result ) {
       if ( true === $result || is_wp_error( $result ) ) {
             return $result;
         }
-        
+
      /** @var WP $wp */
      global $wp;
      //desactivation de l'authentification
@@ -253,3 +253,25 @@ add_filter( 'rest_authentication_errors', function( $result ) {
      }
      return $result;
   }, 9);
+
+
+  //fonction de lire le fichier et de nous renvoyer son contenu
+  function mythemeReadData () {
+        //vérification de lecture
+        $data = wp_cache_get('data', 'mytheme');
+        if ($data === false) {
+            var_dump('Je lis');
+            $data = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'data');
+            //Enregistre les données dans le cache. (60:nb de seconde)
+            wp_cache_set('data', $data, 'mytheme', 60);
+            //pour sauvegarder le requête entre les données en cache il faut ajouter une extension cache: w3 Total Cache 
+        }
+        return $data;
+  }
+
+  if (isset($_GET['cachetest'])) {
+        var_dump(mythemeReadData ());
+        var_dump(mythemeReadData ());
+        var_dump(mythemeReadData ());
+        die();
+  }
