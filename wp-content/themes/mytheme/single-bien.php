@@ -6,6 +6,13 @@
           <img src="<?php the_post_thumbnail_url(); ?>" alt="" style="width:100%; height:auto;">
        </p>
        <?php the_content() ?>
+
+      <!--fonction liée à l' ACF: récupértion de l'information dans la partie front--> 
+       <?php if (get_field('jardin')==="true"): ?> 
+          <p>
+             <strong>Jardin:</strong><?= get_field('surface_jardin') ?>m²
+          </p>
+       <?php endif ?>
               
    <?php endwhile;
    endif; ?>

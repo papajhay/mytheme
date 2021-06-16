@@ -264,7 +264,7 @@ add_filter( 'rest_authentication_errors', function( $result ) {
             $data = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'data');
             //Enregistre les données dans le cache. (60:nb de seconde)
             wp_cache_set('data', $data, 'mytheme', 60);
-            //pour sauvegarder le requête entre les données en cache il faut ajouter une extension cache: w3 Total Cache 
+            //pour sauvegarder le requête entre les données en cache il faut ajouter une extension cache: w3 Total Cachetg 
         }
         return $data;
   }
